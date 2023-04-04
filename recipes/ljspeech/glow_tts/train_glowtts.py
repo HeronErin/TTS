@@ -1,4 +1,6 @@
-import os
+import os, sys
+contd = (sys.argv[-1] if len(sys.argv) == 2 else None)
+
 
 # Trainer: Where the ✨️ happens.
 # TrainingArgs: Defines the set of arguments of the Trainer.
@@ -77,7 +79,7 @@ model = GlowTTS(config, ap, tokenizer, speaker_manager=None)
 # Trainer provides a generic API to train all the 🐸TTS models with all its perks like mixed-precision training,
 # distributed training, etc.
 trainer = Trainer(
-    TrainerArgs(), config, output_path, model=model, train_samples=train_samples, eval_samples=eval_samples
+    TrainerArgs(continue_path=contd), config, output_path, model=model, train_samples=train_samples, eval_samples=eval_samples
 )
 
 # AND... 3,2,1... 🚀
