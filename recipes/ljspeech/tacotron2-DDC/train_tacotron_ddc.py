@@ -1,5 +1,5 @@
-import os
-
+import os, sys
+contd = (sys.argv[-1] if len(sys.argv) == 2 else None)
 from trainer import Trainer, TrainerArgs
 
 from TTS.config.shared_configs import BaseAudioConfig
@@ -89,6 +89,6 @@ model = Tacotron2(config, ap, tokenizer, speaker_manager=None)
 
 # init the trainer and 🚀
 trainer = Trainer(
-    TrainerArgs(), config, output_path, model=model, train_samples=train_samples, eval_samples=eval_samples
+    TrainerArgs(continue_path=contd), config, output_path, model=model, train_samples=train_samples, eval_samples=eval_samples
 )
 trainer.fit()
