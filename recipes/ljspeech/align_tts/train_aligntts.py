@@ -1,5 +1,5 @@
-import os
-
+import os, sys
+contd = (sys.argv[-1] if len(sys.argv) == 2 else None)
 from trainer import Trainer, TrainerArgs
 
 from TTS.tts.configs.align_tts_config import AlignTTSConfig
@@ -63,7 +63,7 @@ model = AlignTTS(config, ap, tokenizer)
 # Trainer provides a generic API to train all the 🐸TTS models with all its perks like mixed-precision training,
 # distributed training, etc.
 trainer = Trainer(
-    TrainerArgs(), config, output_path, model=model, train_samples=train_samples, eval_samples=eval_samples
+    TrainerArgs(continue_path=contd), config, output_path, model=model, train_samples=train_samples, eval_samples=eval_samples
 )
 
 # AND... 3,2,1... 🚀
