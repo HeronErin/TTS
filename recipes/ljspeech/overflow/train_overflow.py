@@ -1,4 +1,5 @@
-import os
+import os, sys
+contd = (sys.argv[-1] if len(sys.argv) == 2 else None)
 
 from trainer import Trainer, TrainerArgs
 
@@ -14,7 +15,7 @@ output_path = os.path.dirname(os.path.abspath(__file__))
 
 # init configs
 dataset_config = BaseDatasetConfig(
-    formatter="ljspeech", meta_file_train="metadata.csv", path=os.path.join("data", "LJSpeech-1.1/")
+    formatter="ljspeech", meta_file_train="metadata.csv", path=os.path.join(output_path, "../LJSpeech-1.1/")
 )
 
 audio_config = BaseAudioConfig(
@@ -85,7 +86,7 @@ model = Overflow(config, ap, tokenizer)
 
 # init the trainer and 🚀
 trainer = Trainer(
-    TrainerArgs(),
+    TrainerArgs(continue_path=contd),
     config,
     output_path,
     model=model,
