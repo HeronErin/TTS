@@ -91,7 +91,6 @@ trainer = Trainer(
     output_path,
     model=model,
     train_samples=train_samples,
-    eval_samples=eval_samples,
-    gpu=1,
+    eval_samples=eval_samples
 )
 trainer.fit()
